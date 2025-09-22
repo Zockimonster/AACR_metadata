@@ -1,7 +1,4 @@
 
-# wget "https://zenodo.org/records/14199536/files/scAtlas.rds.gz"
-# gunzip scAtlas.rds.gz
-
 # https://aacrjournals.org/clincancerres/article/31/4/756/751743/Human-Pancreatic-Cancer-Single-Cell-Atlas-Reveals
 # https://github.com/PDAC-MULTIOMIC/PDAC_Atlas
 
@@ -12,7 +9,11 @@ invisible(lapply(required_packages, library, character.only = T))
 
 # load wp
 # obtain directories
-# ref_dir with a folder panc_ca_atlas, where the scAtlas file can be loaded
+# ref_dir with a folder panc_ca_atlas, where the scAtlas file, and the SRAdb sqlite file can be loaded
+
+# get scAtlas
+# wget "https://zenodo.org/records/14199536/files/scAtlas.rds.gz"
+# gunzip scAtlas.rds.gz
 
 # obtain SRAdb sqlite file
 # wget https://gbnci.cancer.gov/backup/SRAmetadb.sqlite.gz
@@ -1548,5 +1549,6 @@ table(peng_study$DiseaseState, peng_study$sample_ID)
 #                  T22  T23  T24   T3   T4   T5   T6   T7   T8   T9
 # Adjacent normal    0    0    0    0    0    0    0    0    0    0
 # Primary tumor   4148 4577 6370 2730 2215 2615 3650 2335 2466 5840
+
 
 #############################################################################################################
