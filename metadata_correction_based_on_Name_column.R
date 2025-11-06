@@ -1,4 +1,5 @@
 
+
 # Code used to correct the metadata, adjusting the metadata information to match the information 
 # available for the corresponding sample identifier used (Name)
 
@@ -531,7 +532,8 @@ for (x in 1:length(names(gse@gsms))){
   if (sample_name %in% c("P1", "VM", "LuM", "PM")){
     treatment_info <- "Treatment"
   } else{
-    treatment_info <- "Treatment naïve"}
+    treatment_info <- "Treatment naïve"
+    pre_treatment <- "none"}
   
   df[x,]<- c(srr_id, samn_id, sample_name, sample_description, tissue_location, tissue_type, treatment_info, pre_treatment)}
 
@@ -544,12 +546,12 @@ df <- df %>%
 df[df$SRR %in% unique(pdac_metadata$sample_name[pdac_metadata$Study_ID == geo_nr]),]
 #                    SRR    sample_id sample_name          sample_description tissue_location       tissue_type       Treatment                                     pre_treatment
 # GSM4730260 SRR12467642 SAMN15848242          P1 Fine needle aspiration - P1        Pancreas     Primary tumor       Treatment                            gemcitabine/paclitaxel
-# GSM4730261 SRR24437450 SAMN15848241          P2 Fine needle aspiration - P2        Pancreas     Primary tumor Treatment naïve                            gemcitabine/paclitaxel
-# GSM4730262 SRR12467644 SAMN15848240          P3 Fine needle aspiration - P3        Pancreas     Primary tumor Treatment naïve                            gemcitabine/paclitaxel
-# GSM4730263 SRR12467645 SAMN15848239          P4 Fine needle aspiration - P4        Pancreas     Primary tumor Treatment naïve                            gemcitabine/paclitaxel
-# GSM4730264 SRR12467646 SAMN15848238          P5 Fine needle aspiration - P5        Pancreas     Primary tumor Treatment naïve                            gemcitabine/paclitaxel
+# GSM4730261 SRR24437450 SAMN15848241          P2 Fine needle aspiration - P2        Pancreas     Primary tumor Treatment naïve                                              none
+# GSM4730262 SRR12467644 SAMN15848240          P3 Fine needle aspiration - P3        Pancreas     Primary tumor Treatment naïve                                              none
+# GSM4730263 SRR12467645 SAMN15848239          P4 Fine needle aspiration - P4        Pancreas     Primary tumor Treatment naïve                                              none
+# GSM4730264 SRR12467646 SAMN15848238          P5 Fine needle aspiration - P5        Pancreas     Primary tumor Treatment naïve                                              none
 # GSM4730265 SRR12467647 SAMN15848237          VM          Vaginal metastasis    Vaginal apex Metastatic lesion       Treatment FOLFIRI, evofosfamide/ipilimumab and capecitabine
-# GSM4730266 SRR12467648 SAMN15848236         LiM            Liver metastasis           Liver Metastatic lesion Treatment naïve FOLFIRI, evofosfamide/ipilimumab and capecitabine
+# GSM4730266 SRR12467648 SAMN15848236         LiM            Liver metastasis           Liver Metastatic lesion Treatment naïve                                              none
 # GSM4730267 SRR12467649 SAMN15848235         LuM             Lung metastasis            Lung Metastatic lesion       Treatment FOLFIRI, evofosfamide/ipilimumab and capecitabine
 # GSM4730268 SRR12467650 SAMN15848234          PM       Peritoneal metastasis      Peritoneum Metastatic lesion       Treatment FOLFIRI, evofosfamide/ipilimumab and capecitabine
 
@@ -930,7 +932,7 @@ pdac_metadata <- update_metadata_from_df(
 
 ##############################################################################################
 # gse205013 conflict for P11
-# gsm ids #to_adj#
+# gsm ids
 geo_nr <- "GSE205013"
 
 # get geo info
@@ -1194,12 +1196,12 @@ df[df$SRR %in% unique(pdac_metadata$sample_name[pdac_metadata$Study_ID == geo_nr
 # GSM6481946    MDA1_T06           Primary tumor, CD3pos cells SAMN25871452 SRR18045263 Treatment naïve          none        Pancreas
 # GSM6481947    MDA1_T07           Primary tumor, CD3pos cells SAMN25871453 SRR18045262 Treatment naïve          none        Pancreas
 # GSM6481948    MDA1_T01           Primary tumor, CD3pos cells SAMN25948361 SRR18025515 Treatment naïve          none        Pancreas
-# GSM6541649 MDA1_T01_IP Infusion Product, Tumor-derived SAMN30431574 SRR21152734 Treatment naïve          none        Pancreas
-# GSM6541650 MDA1_T02_IP Infusion Product, Tumor-derived SAMN30431575 SRR21152733 Treatment naïve          none        Pancreas
-# GSM6541651 MDA1_T03_IP Infusion Product, Tumor-derived SAMN30431576 SRR21152732 Treatment naïve          none        Pancreas
-# GSM6541652 MDA1_T04_IP Infusion Product, Tumor-derived SAMN30431577 SRR21152731 Treatment naïve          none        Pancreas
-# GSM6541653 MDA1_T05_IP Infusion Product, Tumor-derived SAMN30431578 SRR21152730 Treatment naïve          none        Pancreas
-# GSM6541654 MDA1_T07_IP Infusion Product, Tumor-derived SAMN30431579 SRR21152729 Treatment naïve          none        Pancreas
+# GSM6541649 MDA1_T01_IP       Infusion Product, Tumor-derived SAMN30431574 SRR21152734 Treatment naïve          none        Pancreas
+# GSM6541650 MDA1_T02_IP       Infusion Product, Tumor-derived SAMN30431575 SRR21152733 Treatment naïve          none        Pancreas
+# GSM6541651 MDA1_T03_IP       Infusion Product, Tumor-derived SAMN30431576 SRR21152732 Treatment naïve          none        Pancreas
+# GSM6541652 MDA1_T04_IP       Infusion Product, Tumor-derived SAMN30431577 SRR21152731 Treatment naïve          none        Pancreas
+# GSM6541653 MDA1_T05_IP       Infusion Product, Tumor-derived SAMN30431578 SRR21152730 Treatment naïve          none        Pancreas
+# GSM6541654 MDA1_T07_IP       Infusion Product, Tumor-derived SAMN30431579 SRR21152729 Treatment naïve          none        Pancreas
 
 # adjust df
 df <- df %>%
@@ -1625,13 +1627,13 @@ table(pdac_metadata$pre_treatment, pdac_metadata$Study_ID, useNA="ifany")
 # FFX                                                             0         0         0         0         0         0         0     45317         0         0               0           0
 # FFX, G/A                                                        0         0         0         0         0         0         0      5226         0         0               0           0
 # FFX/SBRT                                                        0         0         0         0         0         0         0      4793         0         0               0           0
-# FOLFIRI, evofosfamide/ipilimumab and capecitabine               0         0         0      9546         0         0         0         0         0         0               0           0
+# FOLFIRI, evofosfamide/ipilimumab and capecitabine               0         0         0      4907         0         0         0         0         0         0               0           0
 # FOLFIRINOX, Gy/cisplatin                                        0         0         0         0         0         0      6412         0         0         0               0           0
 # G/A                                                             0         0         0         0         0         0         0      5723         0         0               0           0
 # Gem/abraxane, Gy/cape                                           0         0         0         0         0         0      1140         0         0         0               0           0
-# gemcitabine/paclitaxel                                          0         0         0      8263         0         0         0         0         0         0               0           0
+# gemcitabine/paclitaxel                                          0         0         0      1304         0         0         0         0         0         0               0           0
 # Gy/cape                                                         0         0         0         0         0         0      1140         0         0         0               0           0
-# none                                                        64558         0     23991         0         0     29622     66832    106307     40971     33309           18285      147907
+# none                                                        64558         0     23991     11598         0     29622     66832    106307     40971     33309           18285      147907
 # RCT                                                         11536         0         0         0         0         0         0         0         0         0               0           0
 # <NA>                                                            0       364         0         0         0         0         0         0         0         0               0           0
 
