@@ -1,5 +1,5 @@
 # Load required libraries 
-required_packages <- c('Matrix', 'dplyr', 'Seurat', 'patchwork', 'SeuratData', 'ggplot2', 'SRAdb', 'GEOquery', 'rentrez', 'RColorBrewer', 'ggalluvial', 'ggrepel')
+required_packages <- c('Matrix', 'dplyr', 'Seurat', 'patchwork', 'SeuratData', 'ggplot2', 'RColorBrewer', 'ggalluvial', 'ggrepel')
 
 invisible(lapply(required_packages, library, character.only = T))
 
@@ -448,3 +448,4 @@ sessionInfo()
 # [197] coin_1.4-3                    xtable_1.8-4                  restfulr_0.0.15               RSpectra_0.16-1               later_1.3.2                   ragg_1.2.7                    rjags_4-15                   
 # [204] viridisLite_0.4.2             tibble_3.2.1                  GenomicAlignments_1.38.1      memoise_2.0.1                 AnnotationDbi_1.64.1          IRanges_2.36.0                cluster_2.1.6                
 # [211] globals_0.16.2               
+
