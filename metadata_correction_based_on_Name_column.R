@@ -19,8 +19,10 @@ data_dir <- "path, where the following files can be found:
     # file_name <- paste0('https://ftp.ncbi.nlm.nih.gov/geo/series/', to_geo_nnn(geo_nr), '/', geo_nr, '/soft/', geo_nr, '_family.soft.gz')
     # wget file_name
   - metadata excel file from https://ngdc.cncb.ac.cn/gsa/browse/CRA001160, called peng_CRR.xlsx"
-source(paste0(data_dir, "metadata_correction_functions.R"))
 
+####################################################################################################
+# load functions
+source(paste0(data_dir, "metadata_correction_functions.R"))
 ####################################################################################################
 
 # save pdac metadata separately
@@ -1644,3 +1646,4 @@ table(pdac_metadata$pre_treatment, pdac_metadata$Study_ID, useNA="ifany")
 
 # save corrected metadata
 write.csv(pdac_metadata, paste0(data_dir, "updated_metadata_samn.csv"), row.names = TRUE)
+
