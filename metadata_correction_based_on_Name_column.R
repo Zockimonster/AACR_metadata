@@ -1,13 +1,8 @@
 
-
 # Code used to correct the metadata, adjusting the metadata information to match the information 
 # available for the corresponding sample identifier used (Name)
 
-# wget "https://zenodo.org/records/14199536/files/scAtlas.rds.gz"
-# gunzip scAtlas.rds.gz
-
 # https://aacrjournals.org/clincancerres/article/31/4/756/751743/Human-Pancreatic-Cancer-Single-Cell-Atlas-Reveals
-# https://github.com/PDAC-MULTIOMIC/PDAC_Atlas
 
 # Load required libraries 
 required_packages <- c('Matrix', 'dplyr','rentrez', 'SRAdb', 'GEOquery', 'stringr', 'tidyr')
@@ -15,7 +10,15 @@ required_packages <- c('Matrix', 'dplyr','rentrez', 'SRAdb', 'GEOquery', 'string
 invisible(lapply(required_packages, library, character.only = T))
 
 # obtain directories
-data_dir <- "path where the panc_ca_atlas and required files can be loaded"
+data_dir <- "path, where the following files can be found:
+  - scAtlas.rds 
+    # wget 'https://zenodo.org/records/14199536/files/scAtlas.rds.gz'
+    # gunzip scAtlas.rds.gz
+  - metadata_correction_functions.R (from https://github.com/Zockimonster/AACR_metadata repository)
+  - optionally soft files, downloaded using wget to avoid repetitive downloading using getGEO()
+    # file_name <- paste0('https://ftp.ncbi.nlm.nih.gov/geo/series/', to_geo_nnn(geo_nr), '/', geo_nr, '/soft/', geo_nr, '_family.soft.gz')
+    # wget file_name
+  - metadata excel file from https://ngdc.cncb.ac.cn/gsa/browse/CRA001160, called peng_CRR.xlsx"
 source(paste0(data_dir, "metadata_correction_functions.R"))
 
 ####################################################################################################
@@ -1400,10 +1403,12 @@ pdac_metadata <- update_metadata_from_df(
 
 # Updating Study: phs001840.v1.p1 
 # ✅ Matched 18285 of 18285 samples
-# Detected overlapping columns: tissue_type, sample_id, sample_name 
+# Detected overlapping columns: tissue_type, sample_id, sample_name, Treatment, pre_treatment 
 # Updated column: tissue_type 
 # Updated column: sample_id 
 # Updated column: sample_name 
+# Updated column: Treatment 
+# Updated column: pre_treatment 
 
 ##############################################################################################
 # peng
@@ -1639,5 +1644,3 @@ table(pdac_metadata$pre_treatment, pdac_metadata$Study_ID, useNA="ifany")
 
 # save corrected metadata
 write.csv(pdac_metadata, paste0(data_dir, "updated_metadata_samn.csv"), row.names = TRUE)
-
-
